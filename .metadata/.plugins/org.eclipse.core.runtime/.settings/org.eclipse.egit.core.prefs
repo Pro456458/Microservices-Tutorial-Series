@@ -1,7 +1,7 @@
 GitRepositoriesView.GitDirectories=F\:\\STS_WorkSpace\\2023\\MicroservicesPractice\\.git;
 GitRepositoriesView.GitDirectories.relative=.git;
 RepositoryGroups.uuids=
-RepositorySearchDialogSearchPath=F\:\\STS_WorkSpace\\2023\\MicroservicesPractice
+RepositorySearchDialogSearchPath=F\:\\STS_WorkSpace\\2023\\MicroservicesPractice\\ConfigServer
 core_autoIgnoreDerivedResources=false
 core_defaultRepositoryDir=C\:\\dev\\workspace\\sts_workspace
 core_ssh_default_agent=\\\\.\\pageant
