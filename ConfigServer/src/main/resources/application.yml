@@ -1,0 +1,17 @@
+server:
+  port: 8086
+  
+spring:
+  application:
+    name: CONFIG-SERVER
+
+
+#  profiles:
+#    active: native    
+    
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Pro456458/Microservices-Config-Server
+          clone-on-start: true
