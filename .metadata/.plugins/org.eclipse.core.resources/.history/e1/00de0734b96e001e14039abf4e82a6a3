@@ -1,0 +1,14 @@
+server:
+  port: 8082
+  
+spring:
+  application:
+    name: RATING-SERVICES
+    
+  datasource:
+    url: 
+    username: 
+    password: 
+        
+  
+    

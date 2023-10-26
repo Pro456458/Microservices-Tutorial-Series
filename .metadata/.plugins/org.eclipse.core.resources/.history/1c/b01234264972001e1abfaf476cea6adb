@@ -1,0 +1,87 @@
+package com.core.hotel.controler;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.core.hotel.entity.Hotel;
+import com.core.hotel.service.HotelService;
+
+@RestController
+@RequestMapping("/hotelService/hotels")
+public class HotelControler {
+	
+	Logger logger =LoggerFactory.getLogger(HotelControler.class);
+	
+	@Autowired
+	HotelService hotelService;
+	
+	@GetMapping
+	public ResponseEntity<List<Hotel>> getHotelDetail() {
+		return ResponseEntity.ok(hotelService.getAllHotelDetails());
+	}
+	
+	@GetMapping(path ="/{hotelId}")
+	public ResponseEntity<Hotel> getSingleHotelDetail(@PathVariable(name="hotelId") String hotelId) {
+		return ResponseEntity.ok(hotelService.getSingleHotelDetails(hotelId));
+	}
+	
+	@GetMapping(path ="/search")
+	public ResponseEntity<List<Hotel>> searchHotelDetail(@RequestParam(required = false, defaultValue = "null")  Map<String,String> searchParam) {
+		
+		String hotelName=null;
+		
+		if(!searchParam.equals("null")) {
+			for (Map.Entry<String, String> entry : searchParam.entrySet()) {
+				String key = entry.getKey();
+				String val = entry.getValue();
+				logger.info("key : {} , value : {}", key,val);
+				
+				if(key.equals("hotelName"))
+					hotelName=val;
+			}
+			
+			if( hotelName!=null && hotelName.equals("null"))
+				return ResponseEntity.ok(hotelService.getHotelDetailsByName(hotelName));
+			
+			
+		}else 
+			return ResponseEntity.ok(hotelService.getAllHotelDetails());	
+		
+		
+		
+		
+		
+	}
+	
+	@PostMapping
+	public ResponseEntity<Hotel> crateHotel(@RequestBody() Hotel hotel ) {
+		return new ResponseEntity<Hotel>(hotelService.createHotel(hotel),HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Hotel> updateHotel(@RequestBody() Hotel hotel ) {
+		return new ResponseEntity<Hotel>(hotelService.updateHotel(hotel),HttpStatus.CREATED);
+	}
+	
+	@DeleteMapping(path="/{hotelId}")
+	public String deleteHotel(@PathVariable String hotelId ) {
+		return hotelService.deleteHotelDetail(hotelId);
+	}
+
+}

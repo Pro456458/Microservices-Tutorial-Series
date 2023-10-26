@@ -1,0 +1,5 @@
+package com.core.user.configuration;
+
+public class BeanConfiguration {
+
+}

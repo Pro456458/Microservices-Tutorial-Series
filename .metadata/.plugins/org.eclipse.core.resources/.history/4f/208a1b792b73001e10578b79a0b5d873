@@ -1,0 +1,18 @@
+package com.core.user.entity;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class Rating {
+	
+	private String ratingId;
+	private String userId;
+	private String hotalId;
+	private int rating;
+	private String feedback;
+	
+	private Hotel hotel;
+
+}

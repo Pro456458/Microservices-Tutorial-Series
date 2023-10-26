@@ -1,0 +1,12 @@
+package com.core.user.entity;
+
+public enum HttpUrls {
+
+	RATING_SERVICE("");
+
+	private HttpUrls(String aa) {
+		
+	}
+	
+	
+}

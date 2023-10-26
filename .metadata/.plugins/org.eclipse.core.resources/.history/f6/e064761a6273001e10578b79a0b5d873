@@ -1,0 +1,14 @@
+package com.core.user.service.external;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.core.user.entity.Hotel;
+
+@FeignClient(name = "HOTEL-SERVICE")
+public interface HotelServices {
+
+	
+	@GetMapping((path ="/{hotelId}"))
+	public Hotel getHotel();
+}

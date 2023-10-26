@@ -1,0 +1,5 @@
+package com.core.hotel.entity;
+
+public class Hotel {
+
+}

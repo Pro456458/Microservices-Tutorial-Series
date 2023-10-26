@@ -1,0 +1,16 @@
+package com.core.user.service;
+
+import java.util.List;
+
+import com.core.user.entity.User;
+
+public interface UserService {
+
+	public List<User> findAllUserDetail();
+	
+	public User findSingleUserDetail(String userID);
+	
+	public User  createUser(User user);
+	
+	public String removeUserDetail(String userID);
+}

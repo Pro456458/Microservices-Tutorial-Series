@@ -1,0 +1,76 @@
+package com.core.user.controler;
+
+import java.util.List;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.core.user.entity.User;
+import com.core.user.service.UserService;
+
+import org.slf4j.Logger;
+
+@RestController
+@RequestMapping(path ="/userService")
+public class UserControler {
+	
+	Logger logger=LoggerFactory.getLogger(UserControler.class);
+	
+	@Autowired
+	UserService userService;
+	
+	@GetMapping(path ="/user")	
+	public ResponseEntity<List<User>> getUserDetail() {
+		return new ResponseEntity<List<User>>(userService.findAllUserDetail(),HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping(path =  "/{userId}")
+	public ResponseEntity<User> getUserDetailById(@PathVariable("userId") String userId) {
+		return new ResponseEntity<User>(userService.findSingleUserDetail(userId),HttpStatus.OK);
+	}
+	
+	public ResponseEntity<List<User>> getUserDetailByThereName(){
+		return null;
+	}
+	
+	public ResponseEntity<List<User>> getUserDetailByThereEmail(@PathVariable("userName") String userName,@PathVariable("userEmail") String userEmail){
+		return null;
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<User>> getUserDetailByThereNameAndEmail(@RequestParam(name = "userName") String userName,@PathVariable(name = "userEmail") String userEmail){
+		
+		//logger.info("",);
+		//logger.info("userName : {}, userEmail : {}", userName,userEmail);
+		
+		return new ResponseEntity<List<User>>(userService.findUserDetailByNameAndEmail(userName, userEmail),HttpStatus.OK);
+	}
+	
+	
+	@PostMapping
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		return new ResponseEntity<User>(userService.createUser(user),HttpStatus.CREATED);
+	}
+	
+	@PutMapping
+	public ResponseEntity<User> updateUser(@RequestBody User user){
+		return new ResponseEntity<User>(userService.updateUser(user),HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{user_id}")
+	public ResponseEntity<String> removeSingleUser(@PathVariable("user_id") String UserId){
+		return new ResponseEntity<String>( userService.removeUserDetail(UserId), HttpStatus.OK);
+	}
+	
+}

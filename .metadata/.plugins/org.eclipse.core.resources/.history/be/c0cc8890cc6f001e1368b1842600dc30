@@ -1,0 +1,17 @@
+package com.core.user.service;
+
+import java.util.List;
+
+import com.core.user.entity.User;
+
+public interface UserService {
+
+	
+	public List<User> getAllUserServiceDetail();
+	
+	public User getSingleUserServiceDetail(String userID);
+	
+	public User  setUserServiceDetail(User user);
+	
+	public List<User> removeUserServiceDetail(String userID);
+}
