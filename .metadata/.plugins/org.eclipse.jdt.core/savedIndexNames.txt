@@ -34,7 +34,6 @@ INDEX VERSION 1.134+F:\STS_WorkSpace\2023\MicroservicesPractice\.metadata\.plugi
 498347982.index
 1432258964.index
 1489963914.index
-181566486.index
 2507455363.index
 3396413263.index
 2244071721.index
